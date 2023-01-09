@@ -31,22 +31,19 @@ FROM
 GROUP BY municipio
 ORDER BY total_item DESC 
 LIMIT 1;
--- vizualizar
-SELECT 
-	*
-FROM 
-	sales 
-LIMIT 3
+
+
 
 -- Exercicio 5: Qual a cidade mais vendeu em dolares?
 SELECT 
 	cidade,
-	sum(5.35*((venda_garrafa - custo_garrafa)*garrafas_vendidas)) AS lucro_dolar
+	 sum(total_venda) AS total_dolar
 FROM 
 	sales 
 GROUP BY cidade 
-ORDER BY lucro_dolar DESC 
+ORDER BY total_dolar DESC 
 LIMIT 1
+
 -- Exercicio 6: Qual foi o dia que mais vendeu itens distintos?
 SELECT 
 	data_pedido,
@@ -55,17 +52,18 @@ FROM
 	sales 
 GROUP BY data_pedido
 ORDER BY total_item DESC 
+LIMIT 1
 
 
 -- Exercicio 7: Monte o top 5 bebidas (item_id) mais vendidas por valor?
 
 SELECT 
 	item_id,
-	sum(((venda_garrafa - custo_garrafa)*garrafas_vendidas)) AS lucro_dolar
+	sum(total_venda) as total_dolar
 FROM 
 	sales 
 GROUP BY item_id
-ORDER BY lucro_dolar DESC 
+ORDER BY total_dolar DESC 
 LIMIT 5
 
 -- Exercicio 8: Monte o top 5 bebidas (item_id) mais vendidas por volume em litros
@@ -100,5 +98,4 @@ SELECT
 FROM 
 	sales 
 GROUP BY data_pedido
-ORDER BY quat_vendas DESC 
-LIMIT 5
+ORDER BY data_pedido DESC 
